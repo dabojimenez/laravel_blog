@@ -1,0 +1,57 @@
+------Si nos muestra un error al crear un proyecto en laravel podemos hacer lo siguiente-----------
+--------------------------------------------------------------------------------
+To enable extensions, verify that they are enabled in your .ini files:
+    - /etc/php/7.4/cli/php.ini
+    - /etc/php/7.4/cli/conf.d/10-mysqlnd.ini
+    - /etc/php/7.4/cli/conf.d/10-opcache.ini
+    - /etc/php/7.4/cli/conf.d/10-pdo.ini
+    - /etc/php/7.4/cli/conf.d/20-calendar.ini
+    - /etc/php/7.4/cli/conf.d/20-ctype.ini
+    - /etc/php/7.4/cli/conf.d/20-curl.ini
+    - /etc/php/7.4/cli/conf.d/20-exif.ini
+    - /etc/php/7.4/cli/conf.d/20-ffi.ini
+    - /etc/php/7.4/cli/conf.d/20-fileinfo.ini
+    - /etc/php/7.4/cli/conf.d/20-ftp.ini
+    - /etc/php/7.4/cli/conf.d/20-gettext.ini
+    - /etc/php/7.4/cli/conf.d/20-iconv.ini
+    - /etc/php/7.4/cli/conf.d/20-json.ini
+    - /etc/php/7.4/cli/conf.d/20-mysqli.ini
+    - /etc/php/7.4/cli/conf.d/20-pdo_mysql.ini
+    - /etc/php/7.4/cli/conf.d/20-phar.ini
+    - /etc/php/7.4/cli/conf.d/20-posix.ini
+    - /etc/php/7.4/cli/conf.d/20-readline.ini
+    - /etc/php/7.4/cli/conf.d/20-shmop.ini
+    - /etc/php/7.4/cli/conf.d/20-sockets.ini
+    - /etc/php/7.4/cli/conf.d/20-sysvmsg.ini
+    - /etc/php/7.4/cli/conf.d/20-sysvsem.ini
+    - /etc/php/7.4/cli/conf.d/20-sysvshm.ini
+    - /etc/php/7.4/cli/conf.d/20-tokenizer.ini
+    - /etc/php/7.4/cli/conf.d/20-zip.ini
+--------------------------------------------------------------------------------
+----Un error semenjante a este debe salir y lo resolvemos d ela siguiente manera
+
+
+1) Modificar el archivo php.ini, de nuestro servidor apache2 o nginex
+	debemos descomentar las extenciones solicitadas en el error
+	y despues reiniciamos el servidor.
+	Podemos modificar el archivo ubicado en el  /etc/php/version/cli/ aqui se encuentra el archivo php.ini,
+	tambien debemos modificarlo
+2) Podemos instalar, el requerimiento solicitado por Laravel, ejemplo:
+	sudo apt-get install php-mbstring   ---> este (mbstring), es el mas solicitado al isntalar laravel o crear un proyecto
+	sudo apt-get install php-dom        ---> en este caso solo cambie, el requerimiento de laravel y lo isntale
+3) En DOCKER:
+	Debemos correr el siguiente comando, por ejemplo:
+	RUN docker-php-ext-install mbstring
+
+--------------------------------HOW INSTALL APACHE OR NGINEX ?
+https://www.laraveltip.com/como-instalar-php-7-4-en-apache-y-nginx-para-laravel/#Paso_2_Instalar_PHP_74_con_las_extensiones_para_Laravel
+--------------------------------PERMISOS EN LINUX
+https://www.blog.laguialinux.es/2013/04/dar-permisos-los-archivos-carpetas-y.html
+----------------------Damos permisos:
+chmod 777 "nombredelarchivo" => eso da permisos a todos los usuarios
+chmod +x "nombredelarchivo" => este da permisos para ejecutar el archivo
+chmod 777 -R "nombredelarchivo"=> los permisos incluyen subdirectorios
+chmod +x -R "nombredelarchivo"=>hace ejecutable todos los archivos del directorio
+----------------------Quitamos permisos:
+chmod 711 =>SOLO ROOT TIENE ACCESO
+chmod -x =>NO SE PUEDE EJECUTAR
